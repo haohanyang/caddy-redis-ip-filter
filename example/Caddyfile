@@ -1,0 +1,27 @@
+{
+	debug
+	admin off
+}
+
+# Allow mode: only IPs in the "test:allowlist" key get through.
+:8080 {
+	redis_ip_filter {
+		mode allow
+		uri redis://localhost:6379/0
+		key test:allowlist
+		refresh_interval 5s
+	}
+
+	respond "allow mode: you are in" 200
+}
+
+# Deny mode: IPs in the "test:denylist" key are blocked.
+:8081 {
+	redis_ip_filter {
+		mode deny
+		uri redis://localhost:6379/0
+		key test:denylist
+		refresh_interval 5s
+	}
+	respond "deny mode: you are in" 200
+}
