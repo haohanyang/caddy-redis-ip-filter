@@ -16,6 +16,11 @@ If the list has never loaded (e.g. Redis is down at startup), every request is d
 
 ## Build
 
+Requirements:
+
+- Go 1.21 or later
+- Caddy v2.8.4 or later
+
 ```sh
 xcaddy build --with github.com/haohanyang/caddy-redis-ip-filter
 ```
